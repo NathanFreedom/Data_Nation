@@ -72,54 +72,54 @@ for the simple programming of implementing 4 shopping mall functions
         print("\n[1] 상품 목록 보기 / [2] 장바구니에 담기 / [3] 장바구니 총 가격 보기 / [4] 프로그램 종료");
           String? input = stdin.readLineSync();
 
-    if (input != null && input.isNotEmpty) {
-      if (input == '1') {
-        print("상품 목록을 보여드립니다.");
-        showProducts(products);
-      } else if (input == '2') {
-        print("상품 이름을 입력해 주세요:");
-        String? productName = stdin.readLineSync();
-        print("상품 개수를 입력해 주세요:");
-        String? quantityInput = stdin.readLineSync();
+            if (input != null && input.isNotEmpty) {
+              if (input == '1') {
+                print("상품 목록을 보여드립니다.");
+                showProducts(products);
+              } else if (input == '2') {
+                print("상품 이름을 입력해 주세요:");
+                String? productName = stdin.readLineSync();
+                print("상품 개수를 입력해 주세요:");
+                String? quantityInput = stdin.readLineSync();
 
-    if (productName == null ||
-            productName.isEmpty ||
-            quantityInput == null ||
-            quantityInput.isEmpty) {
-          print("입력값이 올바르지 않아요 !");
-          continue;
-        }
+            if (productName == null ||
+                    productName.isEmpty ||
+                    quantityInput == null ||
+                    quantityInput.isEmpty) {
+                  print("입력값이 올바르지 않아요 !");
+                  continue;
+                }
 
-        int quantity;
-        try {
-          quantity = int.parse(quantityInput);
-        } catch (e) {
-          print("입력값이 올바르지 않아요 !");
-          continue;
-        }
+                int quantity;
+                try {
+                  quantity = int.parse(quantityInput);
+                } catch (e) {
+                  print("입력값이 올바르지 않아요 !");
+                  continue;
+                }
 
-        var product = products.firstWhere(
-          (p) => p.name == productName,
-          orElse: () => Product('', 0),
-        );
+                var product = products.firstWhere(
+                  (p) => p.name == productName,
+                  orElse: () => Product('', 0),
+                );
 
-        if (product.name.isEmpty) {
-          print("입력값이 올바르지 않아요 !");
-        } else {
-          cart.addProduct(product, quantity);
-          print("장바구니에 상품이 담겼어요 !");
-        }
-      } else if (input == '3') {
-        print("장바구니에 ${cart.getTotalPrice()}원 어치를 담으셨네요 !");
-      } else if (input == '4') {
-        print("이용해 주셔서 감사합니다 ~ 안녕히 가세요 !");
-        isRunning = false;
+                if (product.name.isEmpty) {
+                  print("입력값이 올바르지 않아요 !");
+                } else {
+                  cart.addProduct(product, quantity);
+                  print("장바구니에 상품이 담겼어요 !");
+                }
+              } else if (input == '3') {
+                print("장바구니에 ${cart.getTotalPrice()}원 어치를 담으셨네요 !");
+              } else if (input == '4') {
+                print("이용해 주셔서 감사합니다 ~ 안녕히 가세요 !");
+                isRunning = false;
         
-      } else {
-        print("지원하지 않는 기능입니다! 다시 시도해 주세요. (입력값: \"$input\")");
+              } else {
+                print("지원하지 않는 기능입니다! 다시 시도해 주세요. (입력값: \"$input\")");
+              }
+            } else {
+              print("올바른 입력값을 제공해 주세요.");
+        }
       }
-    } else {
-      print("올바른 입력값을 제공해 주세요.");
     }
-  }
-}
